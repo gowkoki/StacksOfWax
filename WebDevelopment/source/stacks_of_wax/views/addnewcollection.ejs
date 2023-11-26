@@ -1,0 +1,31 @@
+<%- include('header') %>
+    <section class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0" style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    Create new Collection
+                </h2>
+            </div>
+
+            <!-- form -->
+            <form action="/addnewcollection" method="POST" style=" margin-top: 35px;">
+                <!-- Add collection title -->
+                <div class="row mb-4">
+                    <div class="col-9">
+                        <div class="form-outline">
+                            <label class="form-label fw-bold">Collection title</label>
+                            <input name="addcollectionField" type=" text" id="addcollection" class="form-control" />
+                            <input type="hidden" name="userIdField" value="<%= user.user_id %>">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline mt-4">
+                            <input type="submit" class="btn btn-primary" value="Create">
+                        </div>
+                    </div>
+                </div>
+                <!--end Add collection title -->
+            </form>
+        </div>
+    </section>
+    <%- include ('footer') %>

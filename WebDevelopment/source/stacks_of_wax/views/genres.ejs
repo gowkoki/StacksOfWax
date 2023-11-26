@@ -1,0 +1,80 @@
+<%- include('header') %>
+    <section class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0 " style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    <%= title %>
+                </h2>
+            </div>
+
+            <!-- buttons -->
+            <div class="row g-0">
+                <div class="d-flex flex-wrap justify-content-center mt-5 filter-button-group" id="filter-btn-group">
+                    <a href="/genres?genrename=All">
+                        <input type="button" class="btn m-2 text-dark" value="All">
+                    </a>
+                    <% rowdata.forEach((genres)=> { %>
+                        <a href="/genres?genrename=<%=genres.genres_name%>">
+                            <input type="button" class="btn m-2 text-dark" value="<%= genres.genres_name %>">
+                        </a>
+                        <% }) %>
+                </div>
+                <!--end buttons -->
+
+                <!-- filtered data -->
+                <div class="mt-4 row gx-0 gy-3">
+                    <!--records -->
+                    <% genresrecord.forEach((discover)=> { %>
+                        <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+                            <a href="/record?rid=<%=discover.vinyl_id%>" class="text-decoration-none">
+                                <div class="position-relative">
+                                    <img src=" <%= discover.img_url %>" class="mx-auto d-block"
+                                        style="width: 200px; height: 200px;">
+                                    <div class="text-center py-1">
+                                        <p class="position-relative text-capitalize d-inline-block text-secondary">
+                                            <%= discover.album_name %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <% }); %>
+                            <!--end records -->
+                </div>
+                <!-- end filtered data -->
+
+                <!-- pagination -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pg-blue justify-content-center">
+                        <li class="page-item disabled">
+                            <% if (nowPage> 1){ %> <a class="page-link" tabindex="-1"
+                                    href="/genres?genrename=<%=search%>&page=<%=nowPage-1%>">Previous</a>
+                                <% } %>
+                        </li>
+                        <% for(let i=iterator; i <=endingLink; i++){ %>
+                            <li class="page-item">
+                                <% if(i===nowPage){ %>
+                                    <a class="selectedLink page-link" href="/genres?genrename=<%=search%>&page=<%=i%>">
+                                        <%=i %>
+                                    </a>
+                                    <% continue ;%>
+                                        <% } %>
+                                            <% if(i>0){ %>
+                                                <a class="page-link" href="/genres?genrename=<%=search%>&page=<%=i %>">
+                                                    <%=i %>
+                                                </a>
+                                                <% } %>
+                            </li>
+                            <% } %>
+                                <li class="page-item">
+                                    <% if(nowPage < totalpage) {%>
+                                        <a class="page-link"
+                                            href="/genres?genrename=<%=search%>&page=<%=nowPage+1%>">Next</a>
+                                        <% } %>
+                                </li>
+                    </ul>
+                </nav>
+                <!--end pagination -->
+            </div>
+    </section>
+    <%- include ('footer') %>

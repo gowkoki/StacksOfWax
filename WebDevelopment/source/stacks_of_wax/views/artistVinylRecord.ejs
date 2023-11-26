@@ -1,0 +1,35 @@
+<%- include('header') %>
+    <section id="toprated" class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0" style=" margin-top: 5rem!important;">
+
+                <h2 class="position-relative d-inline-block">
+                    <%=artistname.artist_name%>
+                </h2>
+            </div>
+
+            <div class="collection-list mt-4 row gx-0 gy-3">
+                <!--records -->
+                <% rowdata.forEach((artistrecord)=> { %>
+                    <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+
+                        <a href="/record?rid=<%=artistrecord.vinyl_id%>" class="text-decoration-none">
+                            <div class="collection-img position-relative">
+                                <img src=" <%= artistrecord.img_url %>" class="mx-auto d-block"
+                                    style="width: 200px; height: 200px;">
+
+                                <div class="text-center py-1">
+                                    <p class="position-relative text-capitalize d-inline-block text-secondary">
+                                        <%= artistrecord.album_name %>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <% }); %>
+                        <!--end records -->
+            </div>
+
+        </div>
+    </section>
+    <%- include ('footer') %>

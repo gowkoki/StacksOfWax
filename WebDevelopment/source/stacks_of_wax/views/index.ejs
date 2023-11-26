@@ -1,0 +1,126 @@
+<%- include('header') %>
+    <!-- message -->
+    <% if (message.success) { %>
+        <div class="success">
+            <%= message.success %>
+        </div>
+        <% } else if (message.error) { %>
+            <div class="error">
+                <%= message.error %>
+            </div>
+            <% } %>
+                <!--end message -->
+
+                <!-- header catousel slide -->
+                <header id="header" class="carousel slide" data-bs-ride="carousel"
+                    style="padding-top: 104px;height: 80vh!important;">
+                    <div class="container h-100 d-flex align-items-center carousel-inner">
+                        <div class="text-center carousel-item active">
+                            <h1 class="py-2 text-white">Welcome to Stacks of Wax</h1>
+                            <a href="/discover" class="btn mt-3 text-uppercase">Explore</a>
+                        </div>
+
+                        <div class="text-center carousel-item">
+                            <h1 class="py-2 text-white">Create & Share Your Collection</h1>
+                            <% if (user) { %>
+                                <a href="/addnewcollection" class="btn mt-3 text-uppercase">Add New Collection</a>
+                                <% } else{%>
+                                    <a href="/login" class="btn mt-3 text-uppercase">Login</a>
+                                    <%}%>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#header" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#header" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </header>
+                <!-- end header catousel slide -->
+
+                <!-- Top liked collections -->
+                <section id="topliked" class="py-5">
+                    <div class="container">
+                        <div class=" text-center py-5">
+                            <h2 class="position-relative d-inline-block">Most Liked Records</h2>
+                        </div>
+                        <!--records -->
+                        <div class="mt-4 row gx-0 gy-3">
+                            <% mostliked.forEach((like)=> { %>
+                                <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+                                    <a href="/record?rid=<%=like.vinyl_id%>" class="text-decoration-none">
+                                        <div class="position-relative">
+                                            <img src=" <%= like.img_url %>" class="mx-auto d-block"
+                                                style="width: 200px; height: 200px;">
+                                            <span
+                                                class="position-absolute top-0 end-0 bg-primary text-white d-flex align-items-center justify-content-center px-2 py-1"
+                                                style="margin-right: 31px;">
+                                                <%= like.number %>
+                                            </span>
+                                            <div class="text-center py-1">
+                                                <p class="position-relative text-capitalize d-inline-block
+                                                    text-secondary">
+                                                    <%= like.album_name %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <% }); %>
+                        </div>
+                        <!-- end records -->
+                    </div>
+                </section>
+                <!-- end Top liked collections -->
+
+                <!-- Web describtion -->
+                <section id="info" class="py-5">
+                    <div class="container">
+                        <div
+                            class="row d-flex align-items-center justify-content-center text-center justify-content-lg-start text-lg-start">
+                            <div class="info-content">
+                                <span class="text-white">Stacks of Wax is free to use...</span>
+                                <h2 class="mt-2 mb-4 text-white">To Explore More</h2>
+                                <% if (user) { %>
+                                    <a href="/discover" class="btn">Explore</a>
+                                    <% } else{%>
+                                        <a href="/register" class="btn">Register</a>
+                                        <%}%>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- end Web describtion -->
+
+                <!-- Recently added -->
+                <section id="recentlyAdded" class="py-5">
+                    <div class="container">
+                        <div class="title text-center pt-3 pb-5">
+                            <h2 class="position-relative d-inline-block ms-4">Recently Added</h2>
+                        </div>
+                        <div class=" mt-4 row gx-0 gy-3">
+                            <!--records -->
+                            <% recentadded.forEach((recent)=> { %>
+                                <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+                                    <a href="/record?rid=<%=recent.vinyl_id%>" class="text-decoration-none">
+                                        <div class=" position-relative">
+                                            <img src=" <%= recent.img_url %>" class="mx-auto d-block"
+                                                style="width: 200px; height: 200px;">
+                                            <div class="text-center py-1">
+                                                <p
+                                                    class="position-relative text-capitalize d-inline-block text-secondary">
+                                                    <%= recent.album_name %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <% }); %>
+                                    <a href="/discover" style="text-align: end;">see more</a>
+                                    <!--end records -->
+                        </div>
+                        <!--end Recently added -->
+                    </div>
+                </section>
+                <%- include ('footer') %>

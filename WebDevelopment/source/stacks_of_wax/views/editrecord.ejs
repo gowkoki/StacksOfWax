@@ -1,0 +1,278 @@
+<%- include('header') %>
+    <section id="toprated" class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0" style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    Edit Record
+                </h2>
+            </div>
+            <!-- form -->
+            <form action="/editrecord" enctype="multipart/form-data" method="POST" style=" margin-top: 35px;">
+                <input type="hidden" name="userIdField" value="<%= user.user_id %>">
+                <div class="form-outline mb-4">
+                    <label class="form-label fw-bold">Select Collection</label>
+                    <select placeholder="Select Collection" name="selectCollectionField" class="col-xs-4 form-control 
+                        " id="selectCollection">
+                        <option>Select Collection</option>
+                        <% collection.forEach((collect)=> { %>
+                            <option value="<%= collect.collection_id%>">
+                                <%= collect.collection_name %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <!--end select collection and type -->
+
+                <!-- genre -->
+                <div class="form-outline mb-4">
+                    <label class="form-label fw-bold">Select Genre</label>
+                    <select name="selectgenreField" class="col-xs-4 form-control 
+                        " id="selectgenre">
+                        <option>Select Genre</option>
+                        <% genres.forEach((gen)=> { %>
+                            <option value="<%= gen.genres_id%>">
+                                <%= gen.genres_name %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <!-- end genre -->
+
+                <!-- title -->
+                <div class="form-outline mb-4">
+                    <label class="form-label fw-bold">Album Name</label>
+                    <input name="titleField" type="text" id="title" class="form-control"
+                        value="<%=vinyl.album_name%>" />
+                    <input type="hidden" name="vinylIdField" value="<%=vinyl.vinyl_id%>">
+                </div>
+                <!-- end title -->
+
+                <!-- artist dropdown -->
+                <div class="form-outline mb-4" id="artisdropdown">
+                    <label class="form-label fw-bold">Artist</label>
+                    <select name="artistField" class="col-xs-4 form-control 
+                        " id="myDropdown">
+                        <option>Select Artist</option>
+                        <option class="fw-bold" value="other">Other/ Add new Artist</option>
+                        <% artist.forEach((art)=> { %>
+                            <option value="<%= art.atrist_id%>">
+                                <%= art.artist_name %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <!-- end artist dropdown -->
+
+                <!-- Describtion input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label fw-bold">Description</label>
+                    <textarea name="describtionField" class="form-control" id="describtion" rows="4"></textarea>
+                </div>
+                <!-- end describtion -->
+
+                <!-- release date and upload -->
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label fw-bold">Release year</label>
+                            <input name="releaseyearField" type="text" id="releasedate" placeholder="yyyy"
+                                class="form-control" value="<%=vinyl.release_year%>" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label fw-bold">Upload Image</label>
+                            <input type="file" class="form-control" id="recordimgField" name="recordimgField"
+                                value="<%=vinyl.img_url%>" />
+                        </div>
+                    </div>
+                </div>
+                <!--end release date and upload -->
+
+                <!-- tracks and add btn -->
+                <div class="row mb-4">
+                    <label class="form-label fw-bold">Tracklists</label>
+                    <div id="fieldContainer">
+                        <% for (let i=0; i < tracks.length; i++) { %>
+                            <div class="form-outline mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label fw-bold">Track <%= i + 1 %>:</label>
+                                    <input class="form-control" type="text" name="field[]"
+                                        value="<%= tracks[i].track_name %>" required>
+                                    <input type="hidden" name="trackField[]" value="<%= tracks[i].tracks_id %>"
+                                        required>
+                                </div>
+                            </div>
+                            <%};%>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline ">
+                            <button type="button" id="addButton" class="btn btn-primary"><i
+                                    class='fas fa-plus'></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!--end tracks and add btn -->
+
+                <!-- Submit button -->
+                <div class="d-flex flex-wrap justify-content-center mt-5 filter-button-group">
+                    <!-- <input type="submit" class="btn btn-primary btn-block mb-4" style="margin-left: 40%;" value="Edit"> -->
+                    <input type="submit" class="btn m-2 text-dark" value="Edit">
+                    <button type="submit" class="btn m-2 text-dark"
+                        formaction="/editrecord?r_id=<%=vinyl.vinyl_id%>&_method=DELETE"
+                        onclick="return confirm('Are you sure you want to delete the record?')">Delete</button>
+                </div>
+            </form>
+            <!-- form end -->
+    </section>
+
+
+    <!-- footer -->
+    <footer class="bg-dark py-5">
+        <div class="container">
+            <div class="row text-white g-4">
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-primary">Stacks Of Wax</h5>
+                    <p class="text-white mt-3">Stacks of Wax is a place where vinyl collectors can share their passion
+                        for
+                        music and showcase their collections. Join our community to connect with like-minded enthusiasts
+                        and
+                        discover new gems from the world of vinyl.</p>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-primary">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="my-3">
+                            <a href="/" class="text-white text-decoration-none">
+                                <i class="fas fa-chevron-right me-1"></i>Home
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="/discover" class="text-white text-decoration-none">
+                                <i class="fas fa-chevron-right me-1"></i>Explore All
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="/genres" class="text-white text-decoration-none ">
+                                <i class="fas fa-chevron-right me-1"></i>Genres
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="/artists" class="text-white text-decoration-none ">
+                                <i class="fas fa-chevron-right me-1"></i>Artists
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="/allcollection" class="text-white text-decoration-none ">
+                                <i class="fas fa-chevron-right me-1"></i>Collections
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-primary mb-3">Contact Us</h5>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white">
+                        <span class="me-3">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                        <span class="fw-light">Address, city, country</span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white">
+                        <span class="me-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="fw-light">abcd@gmail.com</span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white">
+                        <span class="me-3">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <span class="fw-light">+44 12345677</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-primary">Follow Us</h5>
+                    <div>
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#" class="text-white text-decoration-none  fs-4 me-4">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none  fs-4 me-4">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none  fs-4 me-4">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none  fs-4 me-4">
+                                    <i class="fab fa-printerest"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- edit collection -->
+    <script>
+        //collection name
+        let vinylCollectionId = '<%=vinyl.collection_id%>';
+        let selectElement = document.getElementById('selectCollection');
+        selectElement.value = vinylCollectionId;
+
+        //genre
+        let vinylGenreId = '<%=vinyl.genres_id%>';
+        let selectGElement = document.getElementById('selectgenre');
+        selectGElement.value = vinylGenreId;
+
+        //artist
+        let vinylArtistId = '<%=vinyl.artist_id%>';
+        let selectAElement = document.getElementById('myDropdown');
+        selectAElement.value = vinylArtistId;
+
+        //description
+        let vinylDescription = '<%= vinyl.describtion %>';
+        let textareaElement = document.getElementById('describtion');
+        textareaElement.value = vinylDescription;
+
+        //tracks
+        const addButton = document.getElementById('addButton');
+        const fieldContainer = document.getElementById('fieldContainer');
+        const trackCount = '<%= tracks.length %>';
+        let fieldIndex = parseInt(trackCount);
+
+        addButton.addEventListener('click', () => {
+            const newField = document.createElement('div');
+            newField.innerHTML = `
+    <label class="form-label fw-bold" for="field${fieldIndex}">Track ${fieldIndex + 1}:</label>
+    <input class="form-control" type="text" name="field[]" id="field${fieldIndex + 1}" required>`;
+            fieldContainer.appendChild(newField);
+            fieldIndex++;
+        });
+
+        //artist text field
+        $(document).ready(function () {
+            $('#myDropdown').on('change', function () {
+                var selectedOption = $(this).val();
+                if (selectedOption === 'other') {
+                    $(this).replaceWith('  <div class="row mb-4"><div class="form-outline"><input type="text" id="myTextField" name="newartistField" placeholder="Enter new artist name" class="form-control" /></div> </div > <div class="col"><div class="form-outline"> <label class="form-label fw-bold">Upload Image</label><input type="file" class="form-control" id="artistimgField" name="artistimgField" /> </div> </div> </div > </div >');
+                }
+            });
+        });
+    </script>
+    </body>
+
+    </html>

@@ -1,0 +1,182 @@
+<%- include('header') %>
+    <section class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0" style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    Dashboard
+                </h2>
+            </div>
+
+            <!-- square -->
+            <div class=" p-4">
+                <div class="row gy-4">
+                    <!-- total collection -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="bg-white p-4 mb-4 rounded shadow">
+                            <div class="item-top d-flex align-item-center justify-content-between mb-3 fw-bold">
+                                <h4>Total Collection</h4>
+                            </div>
+                            <div class="item-title text-cyan fs-4 fw-6 mb-1">
+                                <span>
+                                    <%=collection.collection_count%>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end total collection -->
+
+                    <!-- total records -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="bg-white p-4 mb-4 rounded shadow">
+                            <div class="item-top d-flex align-item-center justify-content-between mb-3 fw-bold">
+                                <h4>Total records</h4>
+                            </div>
+                            <div class="item-title text-cyan fs-4 fw-6 mb-1">
+                                <span>
+                                    <%=record.record_count%>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end total records -->
+
+                    <!-- total unique records -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="bg-white p-4 mb-4 rounded shadow">
+                            <div class="item-top d-flex align-item-center justify-content-between mb-3 fw-bold">
+                                <h4>Total Unique Items</h4>
+                            </div>
+                            <div class="item-title text-cyan fs-4 fw-6 mb-1">
+                                <span>
+                                    <%=unique_record.unique_record_count%>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end total unique records -->
+                </div>
+            </div>
+            <!-- end square -->
+
+            <!-- chart -->
+            <section>
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-12 col-md-6 mb-4 mb-md-0 pe-md-2">
+                            <div id="piechart" data-chartdata="<%= JSON.stringify(data) %>"></div>
+                        </div>
+                        <div class="col-12 col-md-6 mb-4 ps-md-2 ">
+                            <div id="myChart" data-chartdata="<%= JSON.stringify(barchart) %>"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- end chart -->
+    </section>
+
+    <!-- footer -->
+    <footer class="bg-dark py-5">
+        <div class="container">
+            <div class="row text-white">
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-primary">Stacks Of Wax</h5>
+                    <p class="text-white mt-3">Stacks of Wax is a place where vinyl collectors can share their passion
+                        for
+                        music and showcase their collections. Join our community to connect with like-minded enthusiasts
+                        and
+                        discover new gems from the world of vinyl.</p>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-primary">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="my-3">
+                            <a href="/" class="text-white text-decoration-none">
+                                <i class="fas fa-chevron-right me-1"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="/discover" class="text-white text-decoration-none">
+                                <i class="fas fa-chevron-right me-1"></i>Explore All
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="/genres" class="text-white text-decoration-none ">
+                                <i class="fas fa-chevron-right me-1"></i>Genres
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="/artists" class="text-white text-decoration-none ">
+                                <i class="fas fa-chevron-right me-1"></i>Artists
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="/allcollection" class="text-white text-decoration-none ">
+                                <i class="fas fa-chevron-right me-1"></i>Collections
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-primary mb-3">Contact Us</h5>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white">
+                        <span class="me-3">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                        <span class="fw-light">QUB, Belfast, UK</span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white">
+                        <span class="me-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="fw-light">gkumaresan01@qub.ac.uk</span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white">
+                        <span class="me-3">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <span class="fw-light">+44 12345677</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-primary">Follow Us</h5>
+                    <div>
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#" class="text-white text-decoration-none  fs-4 me-4">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none  fs-4 me-4">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none  fs-4 me-4">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none  fs-4 me-4">
+                                    <i class="fab fa-printerest"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js_functions/barcharts.js" type="text/javascript"></script>
+    <script src="js_functions/piechart.js" type="text/javascript"></script>
+
+    </body>
+
+    </html>
