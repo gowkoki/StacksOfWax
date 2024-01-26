@@ -1,0 +1,64 @@
+<%- include('header') %>
+    <section class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0" style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    <%= title %>
+                </h2>
+            </div>
+
+            <!--records -->
+            <div class="collection-list mt-4 row gx-0 gy-3">
+                <% rowdata.forEach((discover)=> { %>
+                    <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+                        <a href="/record?rid=<%=discover.vinyl_id%>" class="text-decoration-none">
+                            <div class="collection-img position-relative">
+                                <img src=" <%= discover.img_url %>" class="mx-auto d-block"
+                                    style="width: 200px; height: 200px;">
+                                <div class="text-center py-1">
+                                    <p class="position-relative text-capitalize d-inline-block text-secondary">
+                                        <%= discover.album_name %>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <% }); %>
+            </div>
+            <!--end records -->
+
+            <!-- pagination -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pg-blue justify-content-center">
+                    <li class="page-item ">
+                        <% if (nowPage> 1){ %> <a class="page-link" tabindex="-1"
+                                href="/discover?searchall=<%=search%>&page=<%=nowPage-1%>">Previous</a>
+                            <% } %>
+                    </li>
+                    <% for(let i=iterator; i <=endingLink; i++){ %>
+                        <li class="page-item">
+                            <% if(i===nowPage){ %>
+                                <a class="selectedLink page-link" href="/discover?searchall=<%=search%>&page=<%=i%>">
+                                    <%=i %>
+                                </a>
+                                <% continue ;%>
+                                    <% } %>
+                                        <% if(i>0){ %>
+                                            <a class="page-link" href="/discover?searchall=<%=search%>&page=<%=i %>">
+                                                <%=i %>
+                                            </a>
+                                            <% } %>
+                        </li>
+                        <% } %>
+                            <li class="page-item">
+                                <% if(nowPage < totalpage) {%>
+                                    <a class="page-link"
+                                        href="/discover?searchall=<%=search%>&page=<%=nowPage+1%>">Next</a>
+                                    <% } %>
+                            </li>
+                </ul>
+            </nav>
+            <!--end pagination -->
+        </div>
+    </section>
+    <%- include ('footer') %>

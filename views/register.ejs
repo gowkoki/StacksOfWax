@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacks of Wax</title>
+    <link rel="icon" type="images/x-icon"
+        href="https://images.unsplash.com/photo-1602848596140-33c2b48c6ade?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=15&q=15" />
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- fontawesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="styles/register.css">
+
+</head>
+
+<body>
+    <!-- error/success message -->
+    <% if (message.success) { %>
+        <div class="success">
+            <%= message.success %>
+        </div>
+        <% } else if (message.error) { %>
+            <div class="error">
+                <%= message.error %>
+            </div>
+            <% } %>
+                <!-- end error/success message -->
+
+                <!-- register -->
+                <div class="main-wrapper">
+                    <div class="form-row" style="display: flex;">
+                        <div class="form-col-left">
+                            <h2>Register Now!</h2>
+                            <form class="register-form" action="/register" method="POST">
+                                <div class="form-item-list">
+                                    <!-- first name -->
+                                    <div class="form-item">
+                                        <label for="firstname">first name</label>
+                                        <div class="form-group">
+                                            <span><i class="fas fa-user"></i></span>
+                                            <input type="text" name="firstnameField" class="form-control" id="firstname"
+                                                placeholder="first name">
+                                        </div>
+                                    </div>
+                                    <!--end first name -->
+
+                                    <!-- last name -->
+                                    <div class="form-item">
+                                        <label for="lastname">last name</label>
+                                        <div class="form-group">
+                                            <span><i class="fas fa-user"></i></span>
+                                            <input type="text" name="lastnameField" class="form-control" id="lastname"
+                                                placeholder="last name">
+                                        </div>
+                                    </div>
+                                    <!--end last name -->
+
+                                    <!-- email -->
+                                    <div class="form-item">
+                                        <label for="email">email address</label>
+                                        <div class="form-group">
+                                            <span><i class="fas fa-envelope"></i></span>
+                                            <input type="email" name="emailField" class="form-control" id="email"
+                                                placeholder="email">
+                                        </div>
+                                    </div>
+                                    <!--end email -->
+
+                                    <!-- password -->
+                                    <div class="form-item">
+                                        <label for="password">password
+                                            <div class="icon">
+                                                <i class="fa fa-info-circle"></i>
+                                                <div class="info">Minimum eight
+                                                    characters, at least one
+                                                    uppercase letter, one lowercase letter, one number and one special
+                                                    character
+                                                </div>
+                                            </div>
+                                        </label>
+                                        <div class="form-group">
+                                            <span><i class="fas fa-lock"></i></span>
+                                            <input type="password" name="passwordField" class="form-control"
+                                                id="password" placeholder="password">
+                                        </div>
+                                        <label for="show-password" class="mypassword">
+                                            <input type="checkbox" id="show-password" name="show-password"
+                                                onchange="togglePassword()">
+                                            Show password
+                                        </label>
+                                    </div>
+                                    <!--end password-->
+
+                                    <!-- check box and signup button -->
+                                    <div class="d-flex flex-column">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="privacy-policy-checkbox">
+                                            <label class="form-check-label" for="privacy-policy-checkbox">
+                                                I accept the <a href="#">Privacy Policy</a> and <a href="#">Terms and
+                                                    conditions</a>
+                                            </label>
+                                        </div>
+                                        <button type="submit" id="signup" class="btn btn-primary">
+                                            Sign up <i class="fas fa-long-arrow-alt-right"></i>
+                                        </button>
+                                    </div>
+                                    <!--end check box and signup button -->
+
+                                </div>
+                                <div class="text-center">
+                                    <p>Already Registered? <a href="/login">Login</a></p>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end register -->
+                <script src="js_functions/message.js" type="text/javascript"></script>
+                <script src="js_functions/showPassword.js" type="text/javascript"></script>
+</body>
+
+</html>

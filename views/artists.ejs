@@ -1,0 +1,77 @@
+<%- include('header') %>
+    <section class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0 " style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    <%= title %>
+                </h2>
+            </div>
+
+            <!-- search bar -->
+            <form action="/artists">
+                <div class="input-group rounded mx-auto mt-4" style="width: 500px;">
+                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                        aria-describedby="search-addon" name="artistname"
+                        value="<%= search === 'undefined' ?  '' : search %>" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </form>
+            <!--end search bar -->
+
+            <!-- artist -->
+            <div class="mt-4 row gx-0 gy-3">
+                <% rowdata.forEach((artists)=> { %>
+                    <div class="col-md-6 col-lg-4 col-xl-3 p-2 ">
+                        <a href="/artistVinylRecord?aid=<%= artists.atrist_id %>">
+                            <div class=" position-relative">
+                                <img class="rounded-circle mx-auto d-block" style="width: 150px; height: 150px;" alt=""
+                                    src="<%= artists.artist_img_url %>" />
+                                <div class=" text-center py-1">
+                                    <h6 class="position-relative d-inline-block text-secondary">
+                                        <%= artists.artist_name %>
+                                    </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <% }); %>
+            </div>
+            <!--end artist -->
+
+            <!-- pagination -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pg-blue justify-content-center">
+                    <li class="page-item disabled">
+                        <% if (nowPage> 1){ %> <a class="page-link" tabindex="-1"
+                                href="/artists?artistname=<%=search%>&page=<%=nowPage-1%>">Previous</a>
+                            <% } %>
+                    </li>
+                    <% for(let i=iterator; i <=endingLink; i++){ %>
+                        <li class="page-item">
+                            <% if(i===nowPage){ %>
+                                <a class="selectedLink page-link" href="/artists?artistname=<%=search%>&page=<%=i%>">
+                                    <%=i %>
+                                </a>
+                                <% continue ;%>
+                                    <% } %>
+                                        <% if(i>0){ %>
+                                            <a class="page-link" href="/artists?artistname=<%=search%>&page=<%=i %>">
+                                                <%=i %>
+                                            </a>
+                                            <% } %>
+                        </li>
+                        <% } %>
+                            <li class="page-item">
+                                <% if(nowPage < totalpage) {%>
+                                    <a class="page-link"
+                                        href="/artists?artistname=<%=search%>&page=<%=nowPage+1%>">Next</a>
+                                    <% } %>
+                            </li>
+                </ul>
+            </nav>
+            <!--end pagination -->
+        </div>
+    </section>
+    <%- include ('footer') %>

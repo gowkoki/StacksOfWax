@@ -1,0 +1,60 @@
+<%- include('header') %>
+    <section class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0" style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    Library
+                </h2>
+            </div>
+
+            <!-- select collection -->
+            <form action="/library" method="post">
+                <div class="row mb-4">
+                    <div class="col-9">
+                        <div class="form-outline">
+                            <label class="form-label fw-bold">Select the collection</label>
+                            <select class="col-xs-4 form-control" id="selectcollection" name="selectcollectionField">
+                                <option>Select Collection</option>
+                                <% collection.forEach((coll)=> { %>
+                                    <option>
+                                        <%=coll.collection_name%>
+                                    </option>
+                                    <% }); %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline mt-4">
+                            <button type="submit" class="btn btn-primary"><i class='fas fa-check'></i></button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="userIdField" value="<%= user.user_id %>">
+                </div>
+            </form>
+            <!--end select collection -->
+
+            <!-- collection's records -->
+            <% if (vinyl !=null) { %>
+                <div class="collection-list mt-4 row gx-0 gy-3">
+                    <% vinyl.forEach((discover)=> { %>
+                        <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+                            <a href="/record?rid=<%=discover.vinyl_id%>" class="text-decoration-none">
+                                <div class="collection-img position-relative">
+                                    <img src=" <%= discover.img_url %>" class="mx-auto d-block"
+                                        style="width: 200px; height: 200px;">
+                                    <div class="text-center py-1">
+                                        <p class="position-relative text-capitalize d-inline-block text-secondary">
+                                            <%= discover.album_name %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <% }); %>
+                </div>
+                <% } %>
+                    <!-- end collection's records -->
+        </div>
+    </section>
+
+    <%- include('footer') %>

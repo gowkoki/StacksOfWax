@@ -1,0 +1,86 @@
+<%- include('header') %>
+    <section id="toprated" class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0 " style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    My profile
+                </h2>
+            </div>
+
+            <!-- error/success message -->
+            <% if (message.success) { %>
+                <div class="success">
+                    <%= message.success %>
+                </div>
+                <% } else if (message.error) { %>
+                    <div class="error">
+                        <%= message.error %>
+                    </div>
+                    <% } %>
+                        <!-- end error/success message -->
+
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- first and last name -->
+                                <form action="/myprofile" method="post">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-label">First name</label>
+                                                <input type="text" id="firstname" class="form-control"
+                                                    name="firstnameField" value="<%=userdata.first_name%>" />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-label">Last name</label>
+                                                <input type="text" id="lastname" class="form-control"
+                                                    name="lastnameField" value="<%=userdata.last_name%>" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label">Email address</label>
+                                        <input type="email" id="email" class="form-control" name="emailField"
+                                            value="<%=userdata.email%>" />
+                                        <input type="hidden" id="userid" name="userid" value="<%= userdata.user_id %>">
+                                    </div>
+
+                                    <h5 class="fw-bold mb-4">Change password</h5>
+
+                                    <!-- Password input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="currentpassword">Current Password</label>
+                                        <input type="password" id="currentpassword" class="form-control"
+                                            name="currentpasswordField" placeholder="Enter your current password" />
+                                        <input type="hidden" id="userpassword" name="userpasswordField"
+                                            value="<%= userdata.password %>">
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="newpassword">New Password</label>
+                                        <input type="password" id="newpassword" class="form-control"
+                                            name="newpasswordField" placeholder="Enter your new password" />
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="confirmpassword">Confirm Password</label>
+                                        <input type="password" id="confirmpassword" class="form-control"
+                                            name="confirmpasswordField" placeholder="Confirm your new password" />
+                                    </div>
+
+                                    <!-- Submit button -->
+                                    <div class="d-flex flex-wrap justify-content-center mt-5 filter-button-group">
+                                        <button type="submit" class="btn m-2 text-dark">Edit</button>
+                                        <button type="submit" class="btn m-2 text-dark"
+                                            formaction="/myprofile?userid=<%=userdata.user_id%>&_method=DELETE"
+                                            onclick="return confirm('Are you sure you want to delete your profile?')">Delete</button>
+                                    </div>
+                                </form>
+                                <!-- end profile -->
+                            </div>
+                        </div>
+        </div>
+    </section>
+    <%- include ('footer') %>

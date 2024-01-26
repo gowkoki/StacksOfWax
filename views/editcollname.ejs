@@ -1,0 +1,34 @@
+<%- include('header') %>
+    <section class="py-5">
+        <div class="container">
+            <div class=" text-center mb-0" style=" margin-top: 5rem!important;">
+                <h2 class="position-relative d-inline-block">
+                    Edit Collection
+                </h2>
+            </div>
+
+            <!-- form -->
+            <form action="/editcollname" method="POST" style=" margin-top: 35px;">
+                <!-- edit collection title -->
+                <div class="row mb-4">
+                    <div class="col-9">
+                        <div class="form-outline">
+                            <label class="form-label fw-bold">Edit collection title</label>
+                            <input name="editcollectionField" type=" text" id="editcollection" class="form-control"
+                                value="<%= rowdata.collection_name %>" />
+                            <input type="hidden" name="collidField" value="<%=rowdata.collection_id %>">
+                            <input type="hidden" name="userIdField" value="<%= user.user_id %>">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline mt-4">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </div>
+                </div>
+                <!--end edit collection title -->
+            </form>
+        </div>
+    </section>
+
+    <%- include ('footer') %>
